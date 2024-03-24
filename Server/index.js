@@ -5,10 +5,11 @@ const port = 3000
 
  require('dotenv').config()
 const Proxy = require('./routes/router')
-
+ const rateLimit =  require('./routes/router')
+const rateLimitMiddleware = require('./ratelimiter')
  
 
-
+app.use(rateLimitMiddleware)
 app.get('/', (req, res) => {
 
 
@@ -21,7 +22,7 @@ app.get('/', (req, res) => {
 app.use('/proxy/add',Proxy);
 app.use('/proxy',Proxy)
 
-
+app.use('/ratelimiter',rateLimit)
 
 
 
